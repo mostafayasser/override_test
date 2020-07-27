@@ -1,66 +1,29 @@
 class User {
-  int id;
+  String id;
   String email;
-  String password;
-  String fcmToken;
-  String fullName;
-  String phoneNumber;
-  String imageUrl;
-  String userType;
-  String username;
+  String userToken;
+  String firstName;
+  String lastName;
 
-  User({
-    this.password,
-    this.fcmToken,
-    this.fullName,
-    this.email,
-    this.phoneNumber,
-    this.imageUrl,
-    this.userType,
-    this.id,
-    this.username,
-  });
+  User({this.id, this.email, this.firstName, this.lastName, this.userToken});
 
   User.fromJson(Map<String, dynamic> json) {
-    fcmToken = json['fcmToken'];
-    fullName = json['fullName'];
+    id = json['id'];
     email = json['email'];
-    phoneNumber = json['phoneNumber'];
-    imageUrl = json['imageUrl'];
-    userType = json['userType'];
-    id = json['id'];
-    username = json['username'];
+    userToken = json['user_token'];
+    firstName = json['first_name'];
+    lastName = json['last_name'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.fcmToken != null) {
-      data['fcmToken'] = this.fcmToken;
-    }
-    data['fullName'] = this.fullName;
+
+    data['id'] = this.id;
     data['email'] = this.email;
-    data['phoneNumber'] = this.phoneNumber;
-    data['imageUrl'] = this.imageUrl;
-    data['userType'] = this.userType;
-    data['id'] = this.id;
-    data['username'] = this.username;
+    data['user_token'] = this.userToken;
+    data['first_name'] = this.firstName;
+    data['last_name'] = this.lastName;
 
-    return data;
-  }
-}
-
-class CustomPermessionGroup {
-  int id;
-
-  CustomPermessionGroup({this.id});
-
-  CustomPermessionGroup.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
     return data;
   }
 }

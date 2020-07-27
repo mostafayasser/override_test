@@ -17,6 +17,7 @@ class AuthenticationService {
 
   AuthenticationService({this.api}) {
     loadUser;
+    //print(_user.id);
   }
 
   /*
@@ -26,7 +27,7 @@ class AuthenticationService {
       {@required String username,
       @required String password,
       String macAddress}) async {
-    /* try {
+    try {
       _user = await api.signIn(username: username, password: password);
 
       if (_user != null) {
@@ -35,21 +36,6 @@ class AuthenticationService {
       }
     } catch (e) {
       Logger().e(e);
-    } */
-  }
-
-  /*
-   * change authenticated user password
-   * return false if not authenticated
-   */
-  Future<bool> changeUserPassword(
-      {@required BuildContext context,
-      @required String oldPassword,
-      @required String newPassword}) async {
-    if (user != null) {
-      // return await api.changePassword(context: context, phone: _user.username, oldPassword: oldPassword, newPassword: newPassword, token: _user.token);
-    } else {
-      return null;
     }
   }
 
@@ -73,7 +59,7 @@ class AuthenticationService {
     if (userLoged) {
       _user =
           User.fromJson(json.decode(Preference.getString(PrefKeys.userData)));
-      Logger().i(_user.toJson());
+      //Logger().i(_user.toJson());
       print('\n\n\n\n');
     }
   }

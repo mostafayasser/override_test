@@ -1,5 +1,6 @@
 //import '../../services/auth/authentication_service.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:override_test/core/services/auth/authentication_service.dart';
 import 'package:provider/provider.dart';
 
 import '../../services/api/http_api.dart';
@@ -14,8 +15,8 @@ class SignInModel extends BaseNotifier {
 
   signIn(BuildContext context) async {
     setBusy(true);
-    final api = Provider.of<HttpApi>(context, listen: false);
-    await api.signIn(username: email.text, password: password.text);
+    final auth = Provider.of<AuthenticationService>(context, listen: false);
+    await auth.login(username: email.text, password: password.text);
 
     setBusy(false);
     UI.push(context, Routes.homePage);

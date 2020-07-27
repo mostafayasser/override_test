@@ -4,9 +4,8 @@ import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 import 'dart:convert';
 import 'package:crypto/crypto.dart';
-//import '../../models/user.dart';
+import '../../models/user.dart';
 import '../connectivity/connectivity_service.dart';
-//import '../../services/preference/preference.dart';
 import 'package:flutter/cupertino.dart';
 import 'api.dart';
 
@@ -153,9 +152,8 @@ class HttpApi {
     }
   }
 
-  Future<void> signIn(
+  Future<User> signIn(
       {@required String username, @required String password}) async {
-    print("signin");
     final body = {
       "username": username,
       "password": password
@@ -165,22 +163,12 @@ class HttpApi {
         body: body,
         headers: Header.clientAuth,
         contentType: Headers.formUrlEncodedContentType);
-    print(response["status"]["code"].toString());
-    print("sdsd");
-    /* final token = tokenResponse["access_token"];
-
-    if (token == null) {
-      return null;
-    }
-
-    await Preference.setString(PrefKeys.token, token);
-
-    final response = await request(EndPoint.USER + '/data',
-        type: RequestType.Post, headers: Header.userAuth);
-    if (response['id'] != null) {
-      return User.fromJson(response);
+    print(response["status"]['code']);
+    if (response['user'][0]['id'] != null) {
+      print("in");
+      return User.fromJson(response['user'][0]);
     } else {
       return null;
-    } */
+    }
   }
 }
